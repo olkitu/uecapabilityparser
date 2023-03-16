@@ -25,6 +25,7 @@ usage: ueCapabilityParser
  -multi,--multiple0xB826   Use this option if input contains several
                            0xB826 hexdumps separated by blank lines and
                            optionally prefixed with "Payload :".
+ -n,--newEngine            Use the new engine (default)
  -nr,--defaultNR           Main capability input is NR (otherwise LTE).
  -t,--type <arg>           Type of capability.
                            Valid values are:
@@ -37,13 +38,14 @@ usage: ueCapabilityParser
                            E (28874 nvitem binary, decompressed)
                            Q (QCAT 0xB0CD)
                            QNR (0xB826 hexdump)
-                           M (MEDIATEK CA_COMB_INFO).
- -T,--TsharkPath <arg>     Custom tshark path. (Tshark is used for H type)
+                           M (MEDIATEK CA_COMB_INFO)
+                           O (OSIX UE Capability Information).
+ -T,--TsharkPath <arg>     Set tshark path. (Tshark is used for H type)
 ```
 
 ## Run in Docker
 
-Create data directory and place log files in directory. This directory will be mounted inside of container.
+Create data directory and place log files in directory. This directory will be mounted inside of the container.
 
 ```bash
 $ mkdir data
@@ -53,7 +55,7 @@ $ docker run -it --rm -v ${PWD}/data:/home/java ghcr.io/HandyMenny/uecapabilityp
 Example:
 
 ```bash
-$ docker run -it --rm -v ${PWD}/data:/home/java  ghcr.io/HandyMenny/uecapabilityparser -t H -i "uecapability.txt" --multi -c uecapability-parsed.txt
+$ docker run -it --rm -v ${PWD}/data:/home/java ghcr.io/handymenny/uecapabilityparser:main -t H -i "uecapability.txt" --multi -c uecapability-parsed.txt
 ```
 
 ## Run in locally
